@@ -14,4 +14,14 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  db('cars').insert(req.body)
+  .then(car => {
+    res.json({message: `car ${car} added`});
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to add car' });
+  });
+});
+
 module.exports = router;
