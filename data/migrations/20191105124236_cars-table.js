@@ -6,6 +6,8 @@ exports.up = function(knex) {
     table.text('VIN', 128).unique().notNullable();
     table.text('Model', 128).notNullable();
     table.decimal('Mileage').defaultTo(0);
+    table.text('Transmission Type', 128);
+    table.text('Status', 128);
   })
 };
 
