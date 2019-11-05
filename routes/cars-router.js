@@ -14,6 +14,16 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/:id', (req, res) => {
+  db('cars').where({ id: req.params.id })
+  .then(car => {
+    res.json(car); 
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to retrieve fruits' });
+  });
+});
+
 router.post('/', (req, res) => {
   db('cars').insert(req.body)
   .then(car => {
