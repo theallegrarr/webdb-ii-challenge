@@ -34,4 +34,14 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  db('cars').where({id: req.params.id}).update(req.body)
+  .then(car => {
+    res.json({message: `car ${req.params.id} updated`});
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to update the car' });
+  });
+});
+
 module.exports = router;
