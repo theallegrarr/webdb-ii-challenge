@@ -24,4 +24,14 @@ router.post('/', (req, res) => {
   });
 });
 
+router.delete('/:id', (req, res) => {
+  db('cars').where({id: req.params.id}).delete()
+  .then(car => {
+    res.json({message: `car ${req.params.id} deleted`});
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to delete the car' });
+  });
+});
+
 module.exports = router;
